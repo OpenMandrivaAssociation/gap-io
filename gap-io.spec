@@ -76,9 +76,11 @@ mkdir -p %{buildroot}%{_gap_dir}/pkg/io/bin/$GAParch
 rm -f %{buildroot}%{_gap_dir}/pkg/io/bin/$GAParch/io.la
 cp -a *.g doc example gap tst %{buildroot}%{_gap_dir}/pkg/io
 
-%post -p %{_bindir}/update-gap-workspace
+%post
+    %{_bindir}/update-gap-workspace
 
-%postun -p %{_bindir}/update-gap-workspace
+%postun
+    %{_bindir}/update-gap-workspace
 
 %check
 # Cannot run the HTTP test, as there is no network access on koji builders
