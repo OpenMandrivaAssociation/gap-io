@@ -1,0 +1,101 @@
+--- ./src/io.c.orig	2012-05-28 12:20:35.000000000 -0600
++++ ./src/io.c	2013-05-22 14:39:20.388477998 -0600
+@@ -704,19 +704,19 @@ Obj FuncIO_stat(Obj self,Obj filename)
+         return Fail;
+       }
+       rec = NEW_PREC(0);
+-      AssPRec(rec,RNamName("dev"),MyObjInt_Int((Int) ourstatbuf.st_dev));
+-      AssPRec(rec,RNamName("ino"),MyObjInt_Int((Int) ourstatbuf.st_ino));
+-      AssPRec(rec,RNamName("mode"),MyObjInt_Int((Int) ourstatbuf.st_mode));
+-      AssPRec(rec,RNamName("nlink"),MyObjInt_Int((Int) ourstatbuf.st_nlink));
+-      AssPRec(rec,RNamName("uid"),MyObjInt_Int((Int) ourstatbuf.st_uid));
+-      AssPRec(rec,RNamName("gid"),MyObjInt_Int((Int) ourstatbuf.st_gid));
+-      AssPRec(rec,RNamName("rdev"),MyObjInt_Int((Int) ourstatbuf.st_rdev));
+-      AssPRec(rec,RNamName("size"),MyObjInt_Int((Int) ourstatbuf.st_size));
+-      AssPRec(rec,RNamName("blksize"),MyObjInt_Int((Int)ourstatbuf.st_blksize));
+-      AssPRec(rec,RNamName("blocks"),MyObjInt_Int((Int) ourstatbuf.st_blocks));
+-      AssPRec(rec,RNamName("atime"),MyObjInt_Int((Int) ourstatbuf.st_atime));
+-      AssPRec(rec,RNamName("mtime"),MyObjInt_Int((Int) ourstatbuf.st_mtime));
+-      AssPRec(rec,RNamName("ctime"),MyObjInt_Int((Int) ourstatbuf.st_ctime));
++      AssPRec(rec,RNamName("dev"),ObjInt_ULongLong(ourstatbuf.st_dev));
++      AssPRec(rec,RNamName("ino"),ObjInt_ULongLong(ourstatbuf.st_ino));
++      AssPRec(rec,RNamName("mode"),ObjInt_UInt(ourstatbuf.st_mode));
++      AssPRec(rec,RNamName("nlink"),ObjInt_ULongLong(ourstatbuf.st_nlink));
++      AssPRec(rec,RNamName("uid"),ObjInt_UInt(ourstatbuf.st_uid));
++      AssPRec(rec,RNamName("gid"),ObjInt_UInt(ourstatbuf.st_gid));
++      AssPRec(rec,RNamName("rdev"),ObjInt_ULongLong(ourstatbuf.st_rdev));
++      AssPRec(rec,RNamName("size"),ObjInt_LongLong(ourstatbuf.st_size));
++      AssPRec(rec,RNamName("blksize"),ObjInt_LongLong(ourstatbuf.st_blksize));
++      AssPRec(rec,RNamName("blocks"),ObjInt_LongLong(ourstatbuf.st_blocks));
++      AssPRec(rec,RNamName("atime"),ObjInt_Int((Int) ourstatbuf.st_atime));
++      AssPRec(rec,RNamName("mtime"),ObjInt_Int((Int) ourstatbuf.st_mtime));
++      AssPRec(rec,RNamName("ctime"),ObjInt_Int((Int) ourstatbuf.st_ctime));
+       return rec;
+   }
+ }
+@@ -738,19 +738,19 @@ Obj FuncIO_fstat(Obj self,Obj fd)
+         return Fail;
+       }
+       rec = NEW_PREC(0);
+-      AssPRec(rec,RNamName("dev"),MyObjInt_Int((Int) ourfstatbuf.st_dev));
+-      AssPRec(rec,RNamName("ino"),MyObjInt_Int((Int) ourfstatbuf.st_ino));
+-      AssPRec(rec,RNamName("mode"),MyObjInt_Int((Int) ourfstatbuf.st_mode));
+-      AssPRec(rec,RNamName("nlink"),MyObjInt_Int((Int) ourfstatbuf.st_nlink));
+-      AssPRec(rec,RNamName("uid"),MyObjInt_Int((Int) ourfstatbuf.st_uid));
+-      AssPRec(rec,RNamName("gid"),MyObjInt_Int((Int) ourfstatbuf.st_gid));
+-      AssPRec(rec,RNamName("rdev"),MyObjInt_Int((Int) ourfstatbuf.st_rdev));
+-      AssPRec(rec,RNamName("size"),MyObjInt_Int((Int) ourfstatbuf.st_size));
+-      AssPRec(rec,RNamName("blksize"),MyObjInt_Int((Int)ourfstatbuf.st_blksize));
+-      AssPRec(rec,RNamName("blocks"),MyObjInt_Int((Int) ourfstatbuf.st_blocks));
+-      AssPRec(rec,RNamName("atime"),MyObjInt_Int((Int) ourfstatbuf.st_atime));
+-      AssPRec(rec,RNamName("mtime"),MyObjInt_Int((Int) ourfstatbuf.st_mtime));
+-      AssPRec(rec,RNamName("ctime"),MyObjInt_Int((Int) ourfstatbuf.st_ctime));
++      AssPRec(rec,RNamName("dev"),ObjInt_ULongLong(ourfstatbuf.st_dev));
++      AssPRec(rec,RNamName("ino"),ObjInt_ULongLong(ourfstatbuf.st_ino));
++      AssPRec(rec,RNamName("mode"),ObjInt_UInt(ourfstatbuf.st_mode));
++      AssPRec(rec,RNamName("nlink"),ObjInt_ULongLong(ourfstatbuf.st_nlink));
++      AssPRec(rec,RNamName("uid"),ObjInt_UInt(ourfstatbuf.st_uid));
++      AssPRec(rec,RNamName("gid"),ObjInt_UInt(ourfstatbuf.st_gid));
++      AssPRec(rec,RNamName("rdev"),ObjInt_ULongLong(ourfstatbuf.st_rdev));
++      AssPRec(rec,RNamName("size"),ObjInt_LongLong(ourfstatbuf.st_size));
++      AssPRec(rec,RNamName("blksize"),ObjInt_LongLong(ourfstatbuf.st_blksize));
++      AssPRec(rec,RNamName("blocks"),ObjInt_LongLong(ourfstatbuf.st_blocks));
++      AssPRec(rec,RNamName("atime"),ObjInt_Int((Int) ourfstatbuf.st_atime));
++      AssPRec(rec,RNamName("mtime"),ObjInt_Int((Int) ourfstatbuf.st_mtime));
++      AssPRec(rec,RNamName("ctime"),ObjInt_Int((Int) ourfstatbuf.st_ctime));
+       return rec;
+   }
+ }
+@@ -772,19 +772,19 @@ Obj FuncIO_lstat(Obj self,Obj filename)
+         return Fail;
+       }
+       rec = NEW_PREC(0);
+-      AssPRec(rec,RNamName("dev"),MyObjInt_Int((Int) ourlstatbuf.st_dev));
+-      AssPRec(rec,RNamName("ino"),MyObjInt_Int((Int) ourlstatbuf.st_ino));
+-      AssPRec(rec,RNamName("mode"),MyObjInt_Int((Int) ourlstatbuf.st_mode));
+-      AssPRec(rec,RNamName("nlink"),MyObjInt_Int((Int) ourlstatbuf.st_nlink));
+-      AssPRec(rec,RNamName("uid"),MyObjInt_Int((Int) ourlstatbuf.st_uid));
+-      AssPRec(rec,RNamName("gid"),MyObjInt_Int((Int) ourlstatbuf.st_gid));
+-      AssPRec(rec,RNamName("rdev"),MyObjInt_Int((Int) ourlstatbuf.st_rdev));
+-      AssPRec(rec,RNamName("size"),MyObjInt_Int((Int) ourlstatbuf.st_size));
+-      AssPRec(rec,RNamName("blksize"),MyObjInt_Int((Int)ourlstatbuf.st_blksize));
+-      AssPRec(rec,RNamName("blocks"),MyObjInt_Int((Int) ourlstatbuf.st_blocks));
+-      AssPRec(rec,RNamName("atime"),MyObjInt_Int((Int) ourlstatbuf.st_atime));
+-      AssPRec(rec,RNamName("mtime"),MyObjInt_Int((Int) ourlstatbuf.st_mtime));
+-      AssPRec(rec,RNamName("ctime"),MyObjInt_Int((Int) ourlstatbuf.st_ctime));
++      AssPRec(rec,RNamName("dev"),ObjInt_ULongLong(ourlstatbuf.st_dev));
++      AssPRec(rec,RNamName("ino"),ObjInt_ULongLong(ourlstatbuf.st_ino));
++      AssPRec(rec,RNamName("mode"),ObjInt_UInt(ourlstatbuf.st_mode));
++      AssPRec(rec,RNamName("nlink"),ObjInt_ULongLong(ourlstatbuf.st_nlink));
++      AssPRec(rec,RNamName("uid"),ObjInt_UInt(ourlstatbuf.st_uid));
++      AssPRec(rec,RNamName("gid"),ObjInt_UInt(ourlstatbuf.st_gid));
++      AssPRec(rec,RNamName("rdev"),ObjInt_ULongLong(ourlstatbuf.st_rdev));
++      AssPRec(rec,RNamName("size"),ObjInt_LongLong(ourlstatbuf.st_size));
++      AssPRec(rec,RNamName("blksize"),ObjInt_LongLong(ourlstatbuf.st_blksize));
++      AssPRec(rec,RNamName("blocks"),ObjInt_LongLong(ourlstatbuf.st_blocks));
++      AssPRec(rec,RNamName("atime"),ObjInt_Int((Int) ourlstatbuf.st_atime));
++      AssPRec(rec,RNamName("mtime"),ObjInt_Int((Int) ourlstatbuf.st_mtime));
++      AssPRec(rec,RNamName("ctime"),ObjInt_Int((Int) ourlstatbuf.st_ctime));
+       return rec;
+   }
+ }

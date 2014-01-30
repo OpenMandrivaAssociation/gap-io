@@ -1,12 +1,13 @@
 Name:           gap-io
 Version:        4.2
-Release:        2%{?dist}
+Release:        5.0%{?dist}
 Summary:        Unix I/O functionality for GAP
 
-Group:          Sciences/Mathematics
 License:        GPLv3+
 URL:            http://www-groups.mcs.st-and.ac.uk/~neunhoef/Computer/Software/Gap/io.html
 Source0:        http://www-groups.mcs.st-and.ac.uk/~neunhoef/Computer/Software/Gap/io/io-%{version}.tar.gz
+# Enable large file suupport
+Patch0:         %{name}-largefile.patch
 
 BuildRequires:  gap-devel
 BuildRequires:  pkgconfig
@@ -48,6 +49,7 @@ lists, and records and can be extended to nearly arbitrary GAP objects.
 
 %prep
 %setup -q -n io
+%patch0
 
 # File file encodings
 for fil in PackageInfo.g PackageInfoFor4.5.g; do
@@ -57,6 +59,7 @@ for fil in PackageInfo.g PackageInfoFor4.5.g; do
 done
 
 %build
+export CFLAGS="$RPM_OPT_FLAGS -DUSE_GMP -D_FILE_OFFSET_BITS=64"
 %configure --with-gaproot=%{_gap_dir}
 make %{?_smp_mflags} io.la
 
@@ -92,6 +95,16 @@ gap -l "/usr/lib/gap;%{buildroot}%{_gap_dir}" tst/platform.g tst/pickle.g \
 %{_gap_dir}/pkg/io/
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Wed May 22 2013 Jerry James <loganjerry@gmail.com> - 4.2-4
+- Build with large file support
+- Use Gap's GMP support when creating large integers
+
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Wed Oct 10 2012 Jerry James <loganjerry@gmail.com> - 4.2-2
 - Add a check script
 
