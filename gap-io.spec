@@ -4,7 +4,7 @@ Release:        5.0%{?dist}
 Summary:        Unix I/O functionality for GAP
 
 License:        GPLv3+
-URL:            http://www-groups.mcs.st-and.ac.uk/~neunhoef/Computer/Software/Gap/io.html
+URL:            https://www-groups.mcs.st-and.ac.uk/~neunhoef/Computer/Software/Gap/io.html
 Source0:        http://www-groups.mcs.st-and.ac.uk/~neunhoef/Computer/Software/Gap/io/io-%{version}.tar.gz
 # Enable large file suupport
 Patch0:         %{name}-largefile.patch
